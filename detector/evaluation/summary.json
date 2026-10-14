@@ -1,0 +1,28 @@
+{
+  "checkpoint": "/home/ysq/wtw_ws/src/walk-these-ways-go2/detector/checkpoints/trotting_tcn.pt",
+  "threshold": 0.5,
+  "validation_episodes": 32,
+  "window_metrics": {
+    "precision": 0.8360655737704918,
+    "recall": 0.9870967741935484,
+    "f1": 0.9053254437869823,
+    "false_positive_rate": 0.0020976087260523003,
+    "tp": 153,
+    "fp": 30,
+    "tn": 14272,
+    "fn": 2
+  },
+  "event_metrics": {
+    "disturbance_episodes": 31,
+    "detected_during_force": 31,
+    "detected_by_recovery_end": 31,
+    "event_recall_during_force": 1.0,
+    "event_recall_by_recovery_end": 1.0,
+    "detection_delay_ms_mean": 8.548387096774194,
+    "detection_delay_ms_median": 5.0,
+    "detection_delay_ms_max": 25.0,
+    "false_alarm_events": 26,
+    "negative_duration_minutes": 4.767333333333334,
+    "false_alarm_events_per_minute": 5.4537826877359805
+  }
+}

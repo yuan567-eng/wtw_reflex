@@ -1,0 +1,31 @@
+{
+  "experiment": "normalization_ablation_100_epoch_budget",
+  "note": "checkpoint按最低验证损失选择；normalized最佳为第46轮，raw最佳为第88轮",
+  "test_dataset": "dataset/ablation/raw/test_5min.npz",
+  "models": {
+    "normalized": {
+      "checkpoint": "detector/checkpoints/ablation_tcn_normalized_100ep.pt",
+      "best_val_loss": 0.056373,
+      "best_epoch": 46,
+      "threshold_0.5": {"accuracy": 0.9907, "balanced_accuracy": 0.8305, "precision": 0.5682, "recall": 0.6667, "f1": 0.6135, "tp": 100, "fp": 76, "tn": 13304, "fn": 50, "alarm_events": 85, "event_detected": 24, "event_total": 30, "event_recall": 0.8},
+      "threshold_0.8": {"accuracy": 0.9925, "balanced_accuracy": 0.8281, "precision": 0.6600, "recall": 0.6600, "f1": 0.6600, "tp": 99, "fp": 51, "tn": 13329, "fn": 51, "alarm_events": 66, "event_detected": 24, "event_total": 30, "event_recall": 0.8},
+      "event_stages": {
+        "original_40_80N": {"detected": 6, "total": 6, "mean_delay_ms": 45.0, "max_delay_ms": 75.0},
+        "expanded_60_120N": {"detected": 12, "total": 12, "mean_delay_ms": 21.67, "max_delay_ms": 75.0},
+        "reduced_20_40N": {"detected": 6, "total": 12, "mean_delay_ms": 31.67, "max_delay_ms": 55.0}
+      }
+    },
+    "raw": {
+      "checkpoint": "detector/checkpoints/ablation_tcn_raw_100ep.pt",
+      "best_val_loss": 0.011748,
+      "best_epoch": 88,
+      "threshold_0.5": {"accuracy": 0.9933, "balanced_accuracy": 0.8516, "precision": 0.6974, "recall": 0.7067, "f1": 0.7020, "tp": 106, "fp": 46, "tn": 13334, "fn": 44, "alarm_events": 62, "event_detected": 24, "event_total": 30, "event_recall": 0.8},
+      "threshold_0.8": {"accuracy": 0.9940, "balanced_accuracy": 0.8454, "precision": 0.7482, "recall": 0.6933, "f1": 0.7197, "tp": 104, "fp": 35, "tn": 13345, "fn": 46, "alarm_events": 52, "event_detected": 24, "event_total": 30, "event_recall": 0.8},
+      "event_stages": {
+        "original_40_80N": {"detected": 6, "total": 6, "mean_delay_ms": 31.67, "max_delay_ms": 75.0},
+        "expanded_60_120N": {"detected": 12, "total": 12, "mean_delay_ms": 21.67, "max_delay_ms": 35.0},
+        "reduced_20_40N": {"detected": 6, "total": 12, "mean_delay_ms": 21.67, "max_delay_ms": 35.0}
+      }
+    }
+  }
+}

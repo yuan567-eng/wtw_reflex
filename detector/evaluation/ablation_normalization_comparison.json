@@ -1,0 +1,67 @@
+{
+  "experiment": "normalization_ablation",
+  "test_dataset": "dataset/ablation/raw/test_5min.npz",
+  "threshold": 0.5,
+  "valid_windows": 13530,
+  "ignored_windows": 750,
+  "models": {
+    "normalized": {
+      "checkpoint": "detector/checkpoints/ablation_tcn_normalized.pt",
+      "accuracy": 0.9891,
+      "balanced_accuracy": 0.8066,
+      "precision": 0.5082,
+      "recall": 0.6200,
+      "f1": 0.5586,
+      "tp": 93,
+      "fp": 90,
+      "tn": 13290,
+      "fn": 57,
+      "alarm_events": 82,
+      "event_level": {
+        "detected": 23,
+        "missed": 7,
+        "total": 30,
+        "recall": 0.7667,
+        "stages": {
+          "original_40_80N": {"detected": 6, "total": 6, "recall": 1.0, "mean_delay_ms": 48.33, "max_delay_ms": 95.0},
+          "expanded_60_120N": {"detected": 12, "total": 12, "recall": 1.0, "mean_delay_ms": 26.67, "max_delay_ms": 95.0},
+          "reduced_20_40N": {"detected": 5, "total": 12, "recall": 0.4167, "mean_delay_ms": 35.0, "max_delay_ms": 55.0}
+        }
+      },
+      "stages": {
+        "original_40_80N": {"accuracy": 0.9867, "balanced_accuracy": 0.8285, "precision": 0.4348, "recall": 0.6667, "f1": 0.5263, "tp": 20, "fp": 26, "tn": 2650, "fn": 10},
+        "expanded_60_120N": {"accuracy": 0.9922, "balanced_accuracy": 0.9384, "precision": 0.6023, "recall": 0.8833, "f1": 0.7162, "tp": 53, "fp": 35, "tn": 5317, "fn": 7},
+        "reduced_20_40N": {"accuracy": 0.9873, "balanced_accuracy": 0.6640, "precision": 0.4082, "recall": 0.3333, "f1": 0.3670, "tp": 20, "fp": 29, "tn": 5323, "fn": 40}
+      }
+    },
+    "raw": {
+      "checkpoint": "detector/checkpoints/ablation_tcn_raw.pt",
+      "accuracy": 0.9827,
+      "balanced_accuracy": 0.8594,
+      "precision": 0.3618,
+      "recall": 0.7333,
+      "f1": 0.4846,
+      "tp": 110,
+      "fp": 194,
+      "tn": 13186,
+      "fn": 40,
+      "alarm_events": 151,
+      "event_level": {
+        "detected": 25,
+        "missed": 5,
+        "total": 30,
+        "recall": 0.8333,
+        "stages": {
+          "original_40_80N": {"detected": 6, "total": 6, "recall": 1.0, "mean_delay_ms": 21.67, "max_delay_ms": 55.0},
+          "expanded_60_120N": {"detected": 12, "total": 12, "recall": 1.0, "mean_delay_ms": 16.67, "max_delay_ms": 35.0},
+          "reduced_20_40N": {"detected": 7, "total": 12, "recall": 0.5833, "mean_delay_ms": 29.29, "max_delay_ms": 55.0}
+        }
+      },
+      "stages": {
+        "original_40_80N": {"accuracy": 0.9841, "balanced_accuracy": 0.9425, "precision": 0.4030, "recall": 0.9000, "f1": 0.5567, "tp": 27, "fp": 40, "tn": 2636, "fn": 3},
+        "expanded_60_120N": {"accuracy": 0.9863, "balanced_accuracy": 0.9848, "precision": 0.4470, "recall": 0.9833, "f1": 0.6146, "tp": 59, "fp": 73, "tn": 5279, "fn": 1},
+        "reduced_20_40N": {"accuracy": 0.9784, "balanced_accuracy": 0.6924, "precision": 0.2286, "recall": 0.4000, "f1": 0.2909, "tp": 24, "fp": 81, "tn": 5271, "fn": 36}
+      }
+    }
+  }
+}

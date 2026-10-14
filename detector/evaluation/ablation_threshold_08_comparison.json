@@ -1,0 +1,55 @@
+{
+  "experiment": "normalization_ablation_threshold_0.8",
+  "test_dataset": "dataset/ablation/raw/test_5min.npz",
+  "threshold": 0.8,
+  "valid_windows": 13530,
+  "ignored_windows": 750,
+  "models": {
+    "normalized": {
+      "accuracy": 0.9919,
+      "balanced_accuracy": 0.7981,
+      "precision": 0.6429,
+      "recall": 0.6000,
+      "f1": 0.6207,
+      "tp": 90,
+      "fp": 50,
+      "tn": 13330,
+      "fn": 60,
+      "alarm_events": 57,
+      "event_level": {
+        "detected": 23,
+        "missed": 7,
+        "total": 30,
+        "recall": 0.7667,
+        "stages": {
+          "original_40_80N": {"detected": 6, "total": 6, "recall": 1.0, "mean_delay_ms": 48.33, "max_delay_ms": 95.0},
+          "expanded_60_120N": {"detected": 12, "total": 12, "recall": 1.0, "mean_delay_ms": 26.67, "max_delay_ms": 95.0},
+          "reduced_20_40N": {"detected": 5, "total": 12, "recall": 0.4167, "mean_delay_ms": 43.0, "max_delay_ms": 95.0}
+        }
+      }
+    },
+    "raw": {
+      "accuracy": 0.9886,
+      "balanced_accuracy": 0.8459,
+      "precision": 0.4907,
+      "recall": 0.7000,
+      "f1": 0.5769,
+      "tp": 105,
+      "fp": 109,
+      "tn": 13271,
+      "fn": 45,
+      "alarm_events": 93,
+      "event_level": {
+        "detected": 23,
+        "missed": 7,
+        "total": 30,
+        "recall": 0.7667,
+        "stages": {
+          "original_40_80N": {"detected": 6, "total": 6, "recall": 1.0, "mean_delay_ms": 21.67, "max_delay_ms": 55.0},
+          "expanded_60_120N": {"detected": 12, "total": 12, "recall": 1.0, "mean_delay_ms": 18.33, "max_delay_ms": 35.0},
+          "reduced_20_40N": {"detected": 5, "total": 12, "recall": 0.4167, "mean_delay_ms": 23.0, "max_delay_ms": 35.0}
+        }
+      }
+    }
+  }
+}
