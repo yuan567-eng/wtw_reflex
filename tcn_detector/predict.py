@@ -19,8 +19,8 @@ from plot import find_episode_slices, plot_episode, resolve_input
 from tcn import DisturbanceTCN
 
 
-DEFAULT_CHECKPOINT = PROJECT_ROOT / "detector/checkpoints/trotting_tcn.pt"
-DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "detector/predictions"
+DEFAULT_CHECKPOINT = PROJECT_ROOT / "tcn_detector/checkpoints/trotting_tcn.pt"
+DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "tcn_detector/predictions"
 
 
 def parse_args():

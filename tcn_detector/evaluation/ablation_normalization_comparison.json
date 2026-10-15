@@ -6,7 +6,7 @@
   "ignored_windows": 750,
   "models": {
     "normalized": {
-      "checkpoint": "detector/checkpoints/ablation_tcn_normalized.pt",
+      "checkpoint": "tcn_detector/checkpoints/ablation_tcn_normalized.pt",
       "accuracy": 0.9891,
       "balanced_accuracy": 0.8066,
       "precision": 0.5082,
@@ -35,7 +35,7 @@
       }
     },
     "raw": {
-      "checkpoint": "detector/checkpoints/ablation_tcn_raw.pt",
+      "checkpoint": "tcn_detector/checkpoints/ablation_tcn_raw.pt",
       "accuracy": 0.9827,
       "balanced_accuracy": 0.8594,
       "precision": 0.3618,

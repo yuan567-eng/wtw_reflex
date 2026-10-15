@@ -22,8 +22,8 @@ from window_dataset import DEFAULT_INPUTS, DetectorWindowDataset
 from tcn import DisturbanceTCN
 
 
-DEFAULT_CHECKPOINT = PROJECT_ROOT / "detector/checkpoints/trotting_tcn.pt"
-DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "detector/evaluation"
+DEFAULT_CHECKPOINT = PROJECT_ROOT / "tcn_detector/checkpoints/trotting_tcn.pt"
+DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "tcn_detector/evaluation"
 IMU_SAMPLE_RATE_HZ = 200.0
 DETECTOR_PERIOD_SECONDS = 0.02
 

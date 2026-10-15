@@ -1,5 +1,5 @@
 {
-  "checkpoint": "/home/ysq/wtw_ws/src/walk-these-ways-go2/detector/checkpoints/trotting_tcn.pt",
+  "checkpoint": "/home/ysq/wtw_ws/src/walk-these-ways-go2/tcn_detector/checkpoints/trotting_tcn.pt",
   "threshold": 0.5,
   "validation_episodes": 32,
   "window_metrics": {

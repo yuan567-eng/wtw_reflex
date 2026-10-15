@@ -23,7 +23,7 @@ from window_dataset import DEFAULT_INPUTS, DetectorWindowDataset
 from tcn import DisturbanceTCN, receptive_field
 
 
-DEFAULT_CHECKPOINT = PROJECT_ROOT / "detector/checkpoints/trotting_tcn.pt"
+DEFAULT_CHECKPOINT = PROJECT_ROOT / "tcn_detector/checkpoints/trotting_tcn.pt"
 DEFAULT_NORMALIZATION_REFERENCE = DEFAULT_INPUTS[0]
 NORMALIZED_STATS_FIELDS = (
     "center",

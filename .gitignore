@@ -22,6 +22,9 @@ go2_gym_deploy/unitree_sdk2_bin/library/unitree_sdk2/build/
 
 # Detector实验数据与模型产物只保存在本地，避免污染源码仓库。
 dataset/**/*.npz
-detector/checkpoints/
-detector/predictions/
-detector/evaluation/*.png
+tcn_detector/checkpoints/
+tcn_detector/predictions/
+tcn_detector/evaluation/*.png
+gru_detector/checkpoints/
+gru_detector/predictions/
+gru_detector/evaluation/*.png
