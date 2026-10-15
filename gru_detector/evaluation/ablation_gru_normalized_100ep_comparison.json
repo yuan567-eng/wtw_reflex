@@ -1,0 +1,53 @@
+{
+  "experiment": "gru_raw_normalized_feature_ablation_100_epoch_budget",
+  "note": "同一 GRU 架构、窗口、stride、seed、episode 划分和 100 epoch 训练预算；窗口级指标仅统计 loss_mask=true 的有效窗口，事件级指标为一次真实施力区间内至少出现一次报警即检出。",
+  "test_dataset_raw": "dataset/ablation/raw/test_5min.npz",
+  "test_dataset_normalized": "dataset/ablation/normalized/test_5min_normalized.npz",
+  "model": {
+    "architecture": "2-layer unidirectional GRU, hidden_size=48, dropout=0.1",
+    "parameter_count": 23377,
+    "checkpoint": "gru_detector/checkpoints/ablation_gru_normalized_100ep.pt",
+    "feature_mode": "normalized",
+    "best_val_loss": 0.26651428865234045
+  },
+  "threshold_0.5": {
+    "accuracy": 0.969,
+    "balanced_accuracy": 0.8294,
+    "precision": 0.2168,
+    "recall": 0.6867,
+    "f1": 0.3296,
+    "tp": 103,
+    "fp": 372,
+    "tn": 13008,
+    "fn": 47,
+    "alarm_events": 315,
+    "event_detected": 23,
+    "event_total": 30,
+    "event_recall": 0.7667,
+    "event_stages": {
+      "original_40_80N": {"detected": 6, "total": 6, "mean_delay_ms": 21.67, "max_delay_ms": 55.0},
+      "expanded_60_120N": {"detected": 11, "total": 12, "mean_delay_ms": 15.0, "max_delay_ms": 15.0},
+      "reduced_20_40N": {"detected": 6, "total": 12, "mean_delay_ms": 15.0, "max_delay_ms": 15.0}
+    }
+  },
+  "threshold_0.8": {
+    "accuracy": 0.9801,
+    "balanced_accuracy": 0.7988,
+    "precision": 0.3036,
+    "recall": 0.6133,
+    "f1": 0.4062,
+    "tp": 92,
+    "fp": 211,
+    "tn": 13169,
+    "fn": 58,
+    "alarm_events": 196,
+    "event_detected": 22,
+    "event_total": 30,
+    "event_recall": 0.7333,
+    "event_stages": {
+      "original_40_80N": {"detected": 6, "total": 6, "mean_delay_ms": 25.0, "max_delay_ms": 75.0},
+      "expanded_60_120N": {"detected": 11, "total": 12, "mean_delay_ms": 16.82, "max_delay_ms": 35.0},
+      "reduced_20_40N": {"detected": 5, "total": 12, "mean_delay_ms": 35.0, "max_delay_ms": 75.0}
+    }
+  }
+}

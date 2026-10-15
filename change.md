@@ -1425,3 +1425,136 @@ python detector/predict.py \
 ### 当前状态
 
 TCN 实现保持不变；后续将在独立的 `gru_detector/` 目录中实现 GRU，并与 TCN 使用相同数据、窗口与评估口径进行对比。
+
+## 2026-10-15 修改记录（三十六）
+
+### 当前目标
+
+实现 GRU 对比实验的第一步：独立定义与现有 TCN 输入输出一致的扰动检测网络。
+
+### 修改内容
+
+- 新增 `gru_detector/gru.py`。
+- 输入保持为数据加载器输出的 `[B, 14, 100]`，在网络内部转为 GRU 所需的 `[B, 100, 14]`。
+- 使用两层单向 GRU，`hidden_size=48`、`dropout=0.1`，取窗口末端隐藏状态经线性层输出一个 logit。
+- 新增参数量统计函数，用于控制 TCN/GRU 架构对比的容量差异。
+
+### 测试方法
+
+```bash
+conda run -n gym python -c "..."
+```
+
+### 测试结果
+
+- 默认 GRU 参数量为 23377，与当前 TCN 的 23393 基本一致。
+- `[3, 14, 100]` 输入可输出 `[3]` logit。
+- 二分类损失有限且可完成反向传播。
+
+### 下一步
+
+实现独立的 `gru_detector/train_gru.py`，复用相同滑动窗口、episode 划分、类别权重和训练超参数。
+
+## 2026-10-15 修改记录（三十七）
+
+### 当前目标
+
+补齐独立 GRU 的训练、预测和评估链路，并使用消融实验数据验证完整接口。
+
+### 修改内容
+
+- 新增 `gru_detector/train_gru.py`、`predict_gru.py` 和 `evaluate_gru.py`。
+- 三个入口均只加载 `DisturbanceGRU`；GRU 脚本会拒绝非 `model_type=gru` 的 checkpoint，避免误用 TCN 模型。
+- GRU checkpoint 保存 `model_type`、模型配置、窗口参数、特征模式、归一化参数和 episode 划分信息。
+- 评估脚本按 checkpoint 中保存的 `feature_mode` 重建窗口数据，raw 模型不会误用归一化特征。
+
+### 测试方法
+
+- 使用 `dataset/ablation/raw/train_normal_1min.npz` 与 `train_abnormal_4min.npz` 进行 1 epoch 冒烟训练。
+- 使用 `dataset/ablation/raw/test_5min.npz` 执行预测，并按 6/12/12 个 episode 输出三段指标。
+- 对训练数据的验证 episode 执行独立事件级评估。
+
+### 测试结果
+
+- 训练、预测、评估脚本均可运行。
+- 冒烟训练的 episode 划分与 TCN 消融实验一致：训练 24 个、验证 6 个。
+- 5 分钟测试集生成 14280 个 50 Hz 预测窗口。
+- 当前环境 GPU 驱动不可通信，PyTorch CUDA device count 为 0；因此尚未启动约 100 epoch 的正式 CPU 训练。
+
+### 下一步
+
+在 GPU 可用时按 TCN 对比设置训练 `ablation_gru_raw_100ep.pt`；若使用 CPU，需要确认可接受约 45 分钟的训练时间。
+
+## 2026-10-15 修改记录（三十八）
+
+### 当前目标
+
+完成 GRU 的 100 epoch 正式训练，并在独立 5 分钟测试集上与 raw-TCN 进行架构对比。
+
+### 训练设置
+
+- 训练数据：`dataset/ablation/raw/train_normal_1min.npz` 与 `train_abnormal_4min.npz`。
+- 测试数据：`dataset/ablation/raw/test_5min.npz`。
+- 输入为 raw 的 `[14, 100]` 窗口，stride 为 4，即 50 Hz 推理。
+- GRU 为两层单向结构，`hidden_size=48`、`dropout=0.1`、参数量 23377。
+- 使用相同 seed、episode 划分、类别权重、学习率和 100 epoch 预算；正式训练由可访问 GPU 的本地终端完成。
+
+### 测试结果
+
+- checkpoint 最低验证损失为 0.185513。
+- threshold=0.5：窗口级 F1=0.3524、FP=411；事件级检出 27/30，弱扰动（20至40 N）检出 9/12。
+- threshold=0.8：窗口级 F1=0.4467、FP=236；事件级检出 25/30，弱扰动检出 7/12。
+- 两档阈值均检出全部 6/6 次原范围和 12/12 次扩大范围扰动。
+- 完整结果保存至 `gru_detector/evaluation/ablation_gru_raw_100ep_comparison.json`；阈值 0.5 的五段概率叠加图保存在同目录。
+
+### 当前结论
+
+与 raw-TCN 相比，当前 GRU 在 threshold=0.5 下提高了事件级检出率（27/30 对 24/30）并提升弱扰动检出（9/12 对 6/12），但产生显著更多误报窗口和报警事件（FP=411、报警段=304），窗口级 F1 明显低于 raw-TCN 的 0.7020。当前 GRU 更敏感但稳定性不足；后续应优先分析阈值、类别权重、GRU 容量或去抖迟滞，而不是直接宣称 GRU 优于 TCN。
+
+## 2026-10-15 修改记录（三十九）
+
+### 当前目标
+
+在 GRU 正式训练时显示 batch 级进度，便于确认长时间训练没有停滞。
+
+### 修改内容
+
+- `gru_detector/train_gru.py` 的训练与验证 DataLoader 均由 `tqdm` 包装。
+- 每个 epoch 显示 `train` 和 `val` 两个 batch 进度条；epoch 结束后仍输出原有 loss、F1 和混淆矩阵。
+
+### 测试结果
+
+- 使用两批最小内存数据验证进度条可创建。
+- 训练损失可完成反向传播，4 个有效样本均被正确统计。
+
+### 使用说明
+
+- 通过 `conda run --no-capture-output -n gym ...` 运行，才能实时看到终端进度条。
+
+## 2026-10-15 修改记录（四十）
+
+### 当前目标
+
+完成 GRU 的 raw / normalized 输入消融：在固定网络结构和训练预算下，确认 IMU 与命令归一化对独立 5 分钟测试集的影响。
+
+### 实验设置
+
+- 两组均为两层单向 GRU，`hidden_size=48`、`dropout=0.1`、100 epoch。
+- 两组使用相同训练 / 验证 episode 划分、窗口 `[14, 100]`、stride=4、seed 和测试集。
+- raw 组直接输入原始 IMU 与命令；normalized 组使用仅由正常训练集拟合得到的归一化参数。
+- 窗口级指标排除 `loss_mask=false` 的恢复 / 忽略窗口；事件级检出定义为：一次真实施力区间中至少有一个窗口报警。
+
+### 测试结果
+
+- normalized-GRU 最低验证损失为 `0.266514`。
+- threshold=0.5：窗口级 F1=0.3296、FP=372，事件级检出 23/30；原范围 6/6、扩大范围 11/12、弱扰动 6/12。
+- threshold=0.8：窗口级 F1=0.4062、FP=211，事件级检出 22/30；原范围 6/6、扩大范围 11/12、弱扰动 5/12。
+- 完整结果写入 `gru_detector/evaluation/ablation_gru_normalized_100ep_comparison.json`；阈值 0.5 的五段概率叠加图写入同目录。
+
+### 当前结论
+
+在当前 GRU 配置与训练数据下，归一化确实略降低了误报（0.5：411 到 372；0.8：236 到 211），但同时明显降低了召回率、事件检出率和弱扰动检出率。因此不能据此声称归一化提升了 GRU 效果；更合理的结论是：当前归一化方案与 GRU 的组合需要继续检查统计量、特征尺度和训练配置。
+
+### 下一步
+
+将四组结果（raw / normalized × TCN / GRU）统一按窗口级和事件级指标比较，再决定是否调整归一化方法或网络结构。

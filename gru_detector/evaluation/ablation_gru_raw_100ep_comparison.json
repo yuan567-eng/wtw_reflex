@@ -1,0 +1,52 @@
+{
+  "experiment": "tcn_gru_architecture_comparison_raw_100_epoch_budget",
+  "note": "GRU 与 TCN 使用相同 raw 数据、窗口、stride、seed、episode 划分和 100 epoch 训练预算；checkpoint 按最低验证损失保存。",
+  "test_dataset": "dataset/ablation/raw/test_5min.npz",
+  "model": {
+    "architecture": "2-layer unidirectional GRU, hidden_size=48, dropout=0.1",
+    "parameter_count": 23377,
+    "checkpoint": "gru_detector/checkpoints/ablation_gru_raw_100ep.pt",
+    "feature_mode": "raw",
+    "best_val_loss": 0.18551287477742573
+  },
+  "threshold_0.5": {
+    "accuracy": 0.9674,
+    "balanced_accuracy": 0.8846,
+    "precision": 0.226,
+    "recall": 0.8,
+    "f1": 0.3524,
+    "tp": 120,
+    "fp": 411,
+    "tn": 12969,
+    "fn": 30,
+    "alarm_events": 304,
+    "event_detected": 27,
+    "event_total": 30,
+    "event_recall": 0.9,
+    "event_stages": {
+      "original_40_80N": {"detected": 6, "total": 6, "mean_delay_ms": 21.67, "max_delay_ms": 55.0},
+      "expanded_60_120N": {"detected": 12, "total": 12, "mean_delay_ms": 15.0, "max_delay_ms": 15.0},
+      "reduced_20_40N": {"detected": 9, "total": 12, "mean_delay_ms": 35.0, "max_delay_ms": 95.0}
+    }
+  },
+  "threshold_0.8": {
+    "accuracy": 0.9797,
+    "balanced_accuracy": 0.8612,
+    "precision": 0.3199,
+    "recall": 0.74,
+    "f1": 0.4467,
+    "tp": 111,
+    "fp": 236,
+    "tn": 13144,
+    "fn": 39,
+    "alarm_events": 200,
+    "event_detected": 25,
+    "event_total": 30,
+    "event_recall": 0.8333,
+    "event_stages": {
+      "original_40_80N": {"detected": 6, "total": 6, "mean_delay_ms": 21.67, "max_delay_ms": 55.0},
+      "expanded_60_120N": {"detected": 12, "total": 12, "mean_delay_ms": 16.67, "max_delay_ms": 35.0},
+      "reduced_20_40N": {"detected": 7, "total": 12, "mean_delay_ms": 32.14, "max_delay_ms": 55.0}
+    }
+  }
+}
