@@ -1,0 +1,49 @@
+{
+  "description": "模型和阈值均在采集此独立测试前固定；结果不可再用于调参。",
+  "normal_rule": "complex_normal 的报警均为假报警；以连续检测窗口合并为一次报警事件。",
+  "event_rule": "同一真实施力区间中至少一个有效窗口报警，即为该扰动事件检出。",
+  "results": [
+    {
+      "variant": "b3_delta",
+      "threshold": 0.8500000238418579,
+      "prediction_file": "/home/ysq/wtw_ws/src/walk-these-ways-go2/detector_v2/tcn_detector/predictions/tcn_b3_delta_final_5min.npz",
+      "window_metrics": {
+        "valid_windows": 13830,
+        "positive_windows": 90,
+        "precision": 0.9032258064516129,
+        "recall": 0.6222222222222222,
+        "f1": 0.7368421052631579,
+        "confusion": {
+          "tp": 56,
+          "fp": 6,
+          "tn": 13734,
+          "fn": 34
+        }
+      },
+      "normal_motion": {
+        "valid_windows": 5712,
+        "detected_windows": 5,
+        "alarm_events": 5,
+        "duration_seconds": 114.24,
+        "false_alarm_events_per_100s": 4.3767507002801125
+      },
+      "unseen_force_event_detection": {
+        "weak_20_35N": {
+          "events": 6,
+          "detected": 3,
+          "event_recall": 0.5
+        },
+        "boundary_35_45N": {
+          "events": 6,
+          "detected": 4,
+          "event_recall": 0.6666666666666666
+        },
+        "strong_80_110N": {
+          "events": 6,
+          "detected": 6,
+          "event_recall": 1.0
+        }
+      }
+    }
+  ]
+}

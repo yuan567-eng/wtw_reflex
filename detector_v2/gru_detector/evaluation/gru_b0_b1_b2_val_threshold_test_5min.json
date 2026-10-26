@@ -1,0 +1,135 @@
+{
+  "description": "GRU V2 B0/B1/B2 独立5分钟测试比较。",
+  "event_rule": "真实施力区间内至少一个有效窗口报警即检出。",
+  "results": [
+    {
+      "variant": "b0",
+      "prediction_file": "/home/ysq/wtw_ws/src/walk-these-ways-go2/detector_v2/gru_detector/predictions/gru_b0_val_threshold_test_5min.npz",
+      "threshold": 0.949999988079071,
+      "window_metrics": {
+        "valid_windows": 13530,
+        "positive_windows": 150,
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1": 0.7499999999999999,
+        "false_positive_rate": 0.0,
+        "confusion": {
+          "tp": 90,
+          "fp": 0,
+          "tn": 13380,
+          "fn": 60
+        }
+      },
+      "event_metrics": {
+        "events": 30,
+        "detected": 20,
+        "event_recall": 0.6666666666666666,
+        "alarm_events": 20,
+        "false_alarm_events": 0,
+        "stages": {
+          "original_40_80N": {
+            "events": 6,
+            "detected": 6,
+            "event_recall": 1.0
+          },
+          "expanded_60_120N": {
+            "events": 12,
+            "detected": 12,
+            "event_recall": 1.0
+          },
+          "weak_20_40N": {
+            "events": 12,
+            "detected": 2,
+            "event_recall": 0.16666666666666666
+          }
+        }
+      }
+    },
+    {
+      "variant": "b1",
+      "prediction_file": "/home/ysq/wtw_ws/src/walk-these-ways-go2/detector_v2/gru_detector/predictions/gru_b1_val_threshold_test_5min.npz",
+      "threshold": 0.949999988079071,
+      "window_metrics": {
+        "valid_windows": 13530,
+        "positive_windows": 150,
+        "precision": 1.0,
+        "recall": 0.54,
+        "f1": 0.7012987012987013,
+        "false_positive_rate": 0.0,
+        "confusion": {
+          "tp": 81,
+          "fp": 0,
+          "tn": 13380,
+          "fn": 69
+        }
+      },
+      "event_metrics": {
+        "events": 30,
+        "detected": 17,
+        "event_recall": 0.5666666666666667,
+        "alarm_events": 17,
+        "false_alarm_events": 0,
+        "stages": {
+          "original_40_80N": {
+            "events": 6,
+            "detected": 5,
+            "event_recall": 0.8333333333333334
+          },
+          "expanded_60_120N": {
+            "events": 12,
+            "detected": 12,
+            "event_recall": 1.0
+          },
+          "weak_20_40N": {
+            "events": 12,
+            "detected": 0,
+            "event_recall": 0.0
+          }
+        }
+      }
+    },
+    {
+      "variant": "b2",
+      "prediction_file": "/home/ysq/wtw_ws/src/walk-these-ways-go2/detector_v2/gru_detector/predictions/gru_b2_val_threshold_test_5min.npz",
+      "threshold": 0.800000011920929,
+      "window_metrics": {
+        "valid_windows": 13530,
+        "positive_windows": 150,
+        "precision": 1.0,
+        "recall": 0.48,
+        "f1": 0.6486486486486487,
+        "false_positive_rate": 0.0,
+        "confusion": {
+          "tp": 72,
+          "fp": 0,
+          "tn": 13380,
+          "fn": 78
+        }
+      },
+      "event_metrics": {
+        "events": 30,
+        "detected": 19,
+        "event_recall": 0.6333333333333333,
+        "alarm_events": 19,
+        "false_alarm_events": 0,
+        "stages": {
+          "original_40_80N": {
+            "events": 6,
+            "detected": 6,
+            "event_recall": 1.0
+          },
+          "expanded_60_120N": {
+            "events": 12,
+            "detected": 12,
+            "event_recall": 1.0
+          },
+          "weak_20_40N": {
+            "events": 12,
+            "detected": 1,
+            "event_recall": 0.08333333333333333
+          }
+        }
+      }
+    }
+  ]
+}

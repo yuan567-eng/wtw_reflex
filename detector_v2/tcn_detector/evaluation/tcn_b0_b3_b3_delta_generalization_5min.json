@@ -1,0 +1,133 @@
+{
+  "description": "模型和阈值均在采集此独立测试前固定；结果不可再用于调参。",
+  "normal_rule": "complex_normal 的报警均为假报警；以连续检测窗口合并为一次报警事件。",
+  "event_rule": "同一真实施力区间中至少一个有效窗口报警，即为该扰动事件检出。",
+  "results": [
+    {
+      "variant": "b0",
+      "threshold": 0.949999988079071,
+      "prediction_file": "/home/ysq/wtw_ws/src/walk-these-ways-go2/detector_v2/tcn_detector/predictions/tcn_b0_on_b3_generalization_5min.npz",
+      "window_metrics": {
+        "valid_windows": 13830,
+        "positive_windows": 90,
+        "precision": 0.5476190476190477,
+        "recall": 0.7666666666666667,
+        "f1": 0.6388888888888888,
+        "confusion": {
+          "tp": 69,
+          "fp": 57,
+          "tn": 13683,
+          "fn": 21
+        }
+      },
+      "normal_motion": {
+        "valid_windows": 5712,
+        "detected_windows": 26,
+        "alarm_events": 15,
+        "duration_seconds": 114.24,
+        "false_alarm_events_per_100s": 13.130252100840337
+      },
+      "unseen_force_event_detection": {
+        "weak_20_35N": {
+          "events": 6,
+          "detected": 5,
+          "event_recall": 0.8333333333333334
+        },
+        "boundary_35_45N": {
+          "events": 6,
+          "detected": 5,
+          "event_recall": 0.8333333333333334
+        },
+        "strong_80_110N": {
+          "events": 6,
+          "detected": 6,
+          "event_recall": 1.0
+        }
+      }
+    },
+    {
+      "variant": "b3",
+      "threshold": 0.8999999761581421,
+      "prediction_file": "/home/ysq/wtw_ws/src/walk-these-ways-go2/detector_v2/tcn_detector/predictions/tcn_b3_on_generalization_5min.npz",
+      "window_metrics": {
+        "valid_windows": 13830,
+        "positive_windows": 90,
+        "precision": 0.8,
+        "recall": 0.6666666666666666,
+        "f1": 0.7272727272727272,
+        "confusion": {
+          "tp": 60,
+          "fp": 15,
+          "tn": 13725,
+          "fn": 30
+        }
+      },
+      "normal_motion": {
+        "valid_windows": 5712,
+        "detected_windows": 10,
+        "alarm_events": 7,
+        "duration_seconds": 114.24,
+        "false_alarm_events_per_100s": 6.127450980392157
+      },
+      "unseen_force_event_detection": {
+        "weak_20_35N": {
+          "events": 6,
+          "detected": 4,
+          "event_recall": 0.6666666666666666
+        },
+        "boundary_35_45N": {
+          "events": 6,
+          "detected": 4,
+          "event_recall": 0.6666666666666666
+        },
+        "strong_80_110N": {
+          "events": 6,
+          "detected": 6,
+          "event_recall": 1.0
+        }
+      }
+    },
+    {
+      "variant": "b3_delta",
+      "threshold": 0.8500000238418579,
+      "prediction_file": "/home/ysq/wtw_ws/src/walk-these-ways-go2/detector_v2/tcn_detector/predictions/tcn_b3_delta_on_generalization_5min.npz",
+      "window_metrics": {
+        "valid_windows": 13830,
+        "positive_windows": 90,
+        "precision": 0.90625,
+        "recall": 0.6444444444444445,
+        "f1": 0.7532467532467533,
+        "confusion": {
+          "tp": 58,
+          "fp": 6,
+          "tn": 13734,
+          "fn": 32
+        }
+      },
+      "normal_motion": {
+        "valid_windows": 5712,
+        "detected_windows": 0,
+        "alarm_events": 0,
+        "duration_seconds": 114.24,
+        "false_alarm_events_per_100s": 0.0
+      },
+      "unseen_force_event_detection": {
+        "weak_20_35N": {
+          "events": 6,
+          "detected": 4,
+          "event_recall": 0.6666666666666666
+        },
+        "boundary_35_45N": {
+          "events": 6,
+          "detected": 5,
+          "event_recall": 0.8333333333333334
+        },
+        "strong_80_110N": {
+          "events": 6,
+          "detected": 6,
+          "event_recall": 1.0
+        }
+      }
+    }
+  ]
+}

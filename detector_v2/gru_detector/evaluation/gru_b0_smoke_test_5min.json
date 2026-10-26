@@ -1,0 +1,49 @@
+{
+  "description": "GRU V2 B0/B1/B2 独立5分钟测试比较。",
+  "event_rule": "真实施力区间内至少一个有效窗口报警即检出。",
+  "results": [
+    {
+      "variant": "b0",
+      "prediction_file": "/home/ysq/wtw_ws/src/walk-these-ways-go2/detector_v2/gru_detector/predictions/gru_b0_smoke_test_5min.npz",
+      "threshold": 0.800000011920929,
+      "window_metrics": {
+        "valid_windows": 13530,
+        "positive_windows": 150,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_rate": 0.0,
+        "confusion": {
+          "tp": 0,
+          "fp": 0,
+          "tn": 13380,
+          "fn": 150
+        }
+      },
+      "event_metrics": {
+        "events": 30,
+        "detected": 0,
+        "event_recall": 0.0,
+        "alarm_events": 0,
+        "false_alarm_events": 0,
+        "stages": {
+          "original_40_80N": {
+            "events": 6,
+            "detected": 0,
+            "event_recall": 0.0
+          },
+          "expanded_60_120N": {
+            "events": 12,
+            "detected": 0,
+            "event_recall": 0.0
+          },
+          "weak_20_40N": {
+            "events": 12,
+            "detected": 0,
+            "event_recall": 0.0
+          }
+        }
+      }
+    }
+  ]
+}

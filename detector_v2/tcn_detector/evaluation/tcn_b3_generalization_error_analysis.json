@@ -1,0 +1,226 @@
+{
+  "false_alarm_events": [
+    {
+      "episode_index": 0,
+      "start_s": 1.72,
+      "end_s": 1.74,
+      "peak_s": 1.72,
+      "peak_pd": 0.9965110421180725,
+      "command_at_peak": [
+        -0.5978,
+        0.1561,
+        -0.8029,
+        2.3044
+      ],
+      "command_delta_0p5s": [
+        -0.7242,
+        0.6488,
+        -0.1569,
+        -1.242
+      ],
+      "command_delta_norm_0p5s": 1.5851414038870253
+    },
+    {
+      "episode_index": 0,
+      "start_s": 1.8,
+      "end_s": 1.82,
+      "peak_s": 1.82,
+      "peak_pd": 0.9722691774368286,
+      "command_at_peak": [
+        -0.5978,
+        0.1561,
+        -0.8029,
+        2.3044
+      ],
+      "command_delta_0p5s": [
+        -0.5596,
+        0.5014,
+        -0.1212,
+        -0.9597
+      ],
+      "command_delta_norm_0p5s": 1.224882019703356
+    },
+    {
+      "episode_index": 4,
+      "start_s": 3.3,
+      "end_s": 3.3,
+      "peak_s": 3.3,
+      "peak_pd": 0.9960247278213501,
+      "command_at_peak": [
+        0.9534,
+        -0.4053,
+        -0.0064,
+        3.4337
+      ],
+      "command_delta_0p5s": [
+        1.2881,
+        -0.6638,
+        0.3017,
+        0.1127
+      ],
+      "command_delta_norm_0p5s": 1.4844422927110528
+    },
+    {
+      "episode_index": 6,
+      "start_s": 2.72,
+      "end_s": 2.72,
+      "peak_s": 2.72,
+      "peak_pd": 0.9379696846008301,
+      "command_at_peak": [
+        0.7907,
+        -0.0586,
+        -0.6048,
+        2.716
+      ],
+      "command_delta_0p5s": [
+        1.5164,
+        -0.4027,
+        -0.8194,
+        0.297
+      ],
+      "command_delta_norm_0p5s": 1.7947487187513271
+    },
+    {
+      "episode_index": 7,
+      "start_s": 3.34,
+      "end_s": 3.36,
+      "peak_s": 3.36,
+      "peak_pd": 0.993503987789154,
+      "command_at_peak": [
+        0.4177,
+        -0.0219,
+        -0.8766,
+        2.8246
+      ],
+      "command_delta_0p5s": [
+        1.0832,
+        -0.3976,
+        -0.3115,
+        -1.143
+      ],
+      "command_delta_norm_0p5s": 1.6537597918707663
+    },
+    {
+      "episode_index": 9,
+      "start_s": 9.04,
+      "end_s": 9.04,
+      "peak_s": 9.04,
+      "peak_pd": 0.9580600261688232,
+      "command_at_peak": [
+        0.6957,
+        0.2517,
+        -0.8605,
+        2.2292
+      ],
+      "command_delta_0p5s": [
+        0.7979,
+        -0.1336,
+        0.0403,
+        -1.192
+      ],
+      "command_delta_norm_0p5s": 1.4411737598228782
+    },
+    {
+      "episode_index": 9,
+      "start_s": 9.5,
+      "end_s": 9.5,
+      "peak_s": 9.5,
+      "peak_pd": 0.9078570008277893,
+      "command_at_peak": [
+        0.6957,
+        0.2517,
+        -0.8605,
+        2.2292
+      ],
+      "command_delta_0p5s": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_delta_norm_0p5s": 0.0
+    }
+  ],
+  "missed_weak_or_boundary_events": [
+    {
+      "scenario": "weak_20_35N",
+      "episode_index": 13,
+      "force_interval_peak_pd": 0.5825857520103455,
+      "force_and_settling_peak_pd": 0.5825857520103455,
+      "peak_s": 4.54,
+      "command_at_peak": [
+        -0.5341,
+        0.412,
+        0.295,
+        3.1688
+      ],
+      "command_delta_0p5s": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_delta_norm_0p5s": 0.0
+    },
+    {
+      "scenario": "weak_20_35N",
+      "episode_index": 16,
+      "force_interval_peak_pd": 0.8404768705368042,
+      "force_and_settling_peak_pd": 0.8404768705368042,
+      "peak_s": 4.54,
+      "command_at_peak": [
+        -0.3954,
+        0.4705,
+        0.6104,
+        2.653
+      ],
+      "command_delta_0p5s": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_delta_norm_0p5s": 0.0
+    },
+    {
+      "scenario": "boundary_35_45N",
+      "episode_index": 18,
+      "force_interval_peak_pd": 0.8894188404083252,
+      "force_and_settling_peak_pd": 0.8894188404083252,
+      "peak_s": 4.6,
+      "command_at_peak": [
+        0.3487,
+        -0.042,
+        -0.4224,
+        2.224
+      ],
+      "command_delta_0p5s": [
+        -0.0415,
+        0.1602,
+        0.2561,
+        -0.5361
+      ],
+      "command_delta_norm_0p5s": 0.6167509655255072
+    },
+    {
+      "scenario": "boundary_35_45N",
+      "episode_index": 21,
+      "force_interval_peak_pd": 0.3381009101867676,
+      "force_and_settling_peak_pd": 0.3381009101867676,
+      "peak_s": 4.52,
+      "command_at_peak": [
+        0.4852,
+        0.3461,
+        -0.2401,
+        2.2768
+      ],
+      "command_delta_0p5s": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command_delta_norm_0p5s": 0.0
+    }
+  ]
+}

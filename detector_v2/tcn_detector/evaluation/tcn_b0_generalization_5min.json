@@ -1,0 +1,40 @@
+{
+  "description": "独立泛化测试；模型与阈值均在采集前固定，结果不可用于再次调参。",
+  "prediction_file": "/home/ysq/wtw_ws/src/walk-these-ways-go2/detector_v2/tcn_detector/predictions/tcn_b0_generalization_5min.npz",
+  "threshold": 0.949999988079071,
+  "normal_motion": {
+    "valid_windows": 5712,
+    "detected_windows": 13,
+    "alarm_events": 10,
+    "duration_seconds": 114.23999999999997,
+    "false_alarm_events_per_100s": 8.753501400560227
+  },
+  "unseen_force_event_detection": {
+    "weak_20_35N": {
+      "events": 6,
+      "detected": 3,
+      "event_recall": 0.5
+    },
+    "boundary_35_45N": {
+      "events": 6,
+      "detected": 5,
+      "event_recall": 0.8333333333333334
+    },
+    "strong_80_110N": {
+      "events": 6,
+      "detected": 6,
+      "event_recall": 1.0
+    }
+  },
+  "all_valid_window_metrics": {
+    "precision": 0.6213592233009708,
+    "recall": 0.7111111111111111,
+    "f1": 0.6632124352331606,
+    "confusion": {
+      "tp": 64,
+      "fp": 39,
+      "tn": 13701,
+      "fn": 26
+    }
+  }
+}
