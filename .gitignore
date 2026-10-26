@@ -28,3 +28,12 @@ tcn_detector/evaluation/*.png
 gru_detector/checkpoints/
 gru_detector/predictions/
 gru_detector/evaluation/*.png
+
+# Detector V2 保持完全独立；数据、模型权重、预测和图像只保存在本地。
+detector_v2/dataset/**/*.npz
+detector_v2/tcn_detector/checkpoints/
+detector_v2/tcn_detector/predictions/
+detector_v2/tcn_detector/evaluation/*.png
+detector_v2/gru_detector/checkpoints/
+detector_v2/gru_detector/predictions/
+detector_v2/gru_detector/evaluation/*.png

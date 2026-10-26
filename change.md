@@ -1558,3 +1558,38 @@ conda run -n gym python -c "..."
 ### 下一步
 
 将四组结果（raw / normalized × TCN / GRU）统一按窗口级和事件级指标比较，再决定是否调整归一化方法或网络结构。
+
+## 2026-10-26 修改记录（四十一）
+
+### 当前目标
+
+为弱扰动优化阶段建立独立的 Detector V2 工作区，避免继续修改已经完成对比实验的 Detector V1。
+
+### 修改内容
+
+- 新增 `detector_v2/`，其下分为 `dataset/`、`tcn_detector/` 和 `gru_detector/` 三个模块。
+- `dataset/` 预留独立的数据采集、标签、原始数据、归一化数据和弱扰动消融数据目录。
+- TCN 和 GRU 分别维护自己的特征处理、窗口构建、训练、预测和评估代码，不再建立共享的 `common/` 模块。
+- 新增 `04项目结构.md`，记录 V2 与旧版目录的边界及后续迁移顺序。
+- 更新 `.gitignore`，忽略 V2 的本地数据、模型权重、预测结果和评估图像。
+
+### 修改原因
+
+- 保留根目录 `dataset/`、`tcn_detector/` 和 `gru_detector/` 作为 Detector V1 的可复现实验快照。
+- 后续 TCN 与 GRU 需要独立调节特征、窗口、训练和评估逻辑；只保持原始数据来源一致。
+
+### 测试方法
+
+- 检查 `detector_v2/` 的目录层级是否完整。
+- 使用 `git check-ignore` 验证 V2 的 `.npz` 数据、checkpoint 和预测文件不会被提交。
+- 检查旧版 `dataset/`、`tcn_detector/`、`gru_detector/` 没有源码改动。
+
+### 测试结果
+
+- V2 的数据、TCN 和 GRU 目录均已创建。
+- 本地实验产物忽略规则生效。
+- 旧版 Detector 源码没有被本次结构调整修改。
+
+### 下一步
+
+先在 `detector_v2/dataset/scripts/` 独立实现 V2 数据采集入口，并用一个最小 episode 验证字段和采样频率。
